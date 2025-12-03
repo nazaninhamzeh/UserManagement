@@ -1,16 +1,17 @@
-# Compiled class file
+########################
+# OS (macOS)
+########################
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+########################
+# Java
+########################
 *.class
-
-# Log file
 *.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
 *.jar
 *.war
 *.nar
@@ -19,6 +20,102 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+########################
+# Maven (multi-module)
+########################
+target/
+**/target/
+
+# Maven backup files
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+########################
+# Gradle (if used anywhere)
+########################
+.gradle/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+########################
+# Spring Boot specifics
+########################
+*.springBeans
+*.factories
+
+########################
+# Docker
+########################
+# Local Docker build outputs
+docker/
+docker-compose.override.yml
+
+# Exclude Docker build cache and layers
+**/build/
+**/.dockerignore
+
+# Prevent accidental inclusion of large images/files
+*.tar
+*.img
+
+########################
+# IntelliJ IDEA
+########################
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Module-specific IntelliJ files
+**/*.iml
+**/.idea/
+
+########################
+# VS Code
+########################
+.vscode/
+
+########################
+# Logs / Temp / Caches
+########################
+logs/
+*.log
+*.tmp
+*.temp
+*.swp
+.tmp/
+.cache/
+**/.cache/
+
+########################
+# Environment & Secrets
+########################
+.env
+.env.*
+*.keystore
+*.pem
+*.p12
+*.jks
+
+# Spring profiles with secrets
+application-local.properties
+application-secret.properties
+application-*.yml
+
+########################
+# Test Artifacts
+########################
+test-output/
+**/test-output/
+
+########################
+# System files (just in case)
+########################
+Thumbs.db
+ehthumbs.db

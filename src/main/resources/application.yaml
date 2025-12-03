@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: authservice
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authdb
+    username: app
+    password: app
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
