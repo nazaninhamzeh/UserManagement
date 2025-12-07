@@ -2,6 +2,7 @@ package com.souldev.authservice.service;
 
 import com.souldev.authservice.dto.UserCreateRequest;
 import com.souldev.authservice.dto.UserResponse;
+import com.souldev.authservice.dto.UserUpdateRequest;
 import com.souldev.authservice.entity.User;
 import com.souldev.authservice.exception.NotFoundException;
 import com.souldev.authservice.mapper.UserMapper;
@@ -51,6 +52,18 @@ public class UserService {
                 .stream()
                 .map(userMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    public UserResponse updateUser(UserUpdateRequest request) {
+        User existingUser = userRepository.findById(request.id())
+                .orElseThrow(() -> new NotFoundException(Messages.USER_NOT_FOUND));
+        userValidator.validateUpdateUser(request, existingUser);
+        existingUser.setUsername(request.username());
+        existingUser.setFirstName(request.firstName());
+        existingUser.setLastName(request.lastName());
+        existingUser.setPassword(passwordEncoder.encode(request.password()));
+        User saved = userRepository.save(existingUser);
+        return userMapper.toDto(saved);
     }
 
     //----private helper methods----
