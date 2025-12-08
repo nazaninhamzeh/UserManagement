@@ -6,7 +6,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true) //equal and hashcode only for marked fields
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -18,7 +18,7 @@ public class User {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    @EqualsAndHashCode.Include
+    @EqualsAndHashCode.Include // this field will be used in equals and hashcode methods
     private String username;
 
     @Column(nullable = false)
