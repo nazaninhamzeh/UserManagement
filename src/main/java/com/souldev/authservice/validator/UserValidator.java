@@ -1,7 +1,6 @@
 package com.souldev.authservice.validator;
 
-import com.souldev.authservice.dto.UserCreateRequest;
-import com.souldev.authservice.dto.UserUpdateRequest;
+import com.souldev.authservice.dto.UserRequest;
 import com.souldev.authservice.entity.User;
 import com.souldev.authservice.exception.ConflictException;
 import com.souldev.authservice.repository.UserRepository;
@@ -15,13 +14,13 @@ public class UserValidator {
 
     private final UserRepository userRepository;
 
-    public void validateCreateUser(UserCreateRequest request) {
+    public void validateCreateUser(UserRequest request) {
         if(userRepository.findByUsername(request.username()).isEmpty()) {
             throw new ConflictException(Messages.USER_ALREADY_EXISTS);
         }
     }
 
-    public void validateUpdateUser(UserUpdateRequest request, User existingUser) {  //existingUser is got to avoid double database hit
+    public void validateUpdateUser(UserRequest request, User existingUser) {  //existingUser is got to avoid double database hit
         if (userRepository.existsByUsernameAndIdNot(request.username(), existingUser.getId())) {
             throw new ConflictException(Messages.USER_ALREADY_EXISTS);
         }

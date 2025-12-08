@@ -1,8 +1,7 @@
 package com.souldev.authservice.service;
 
-import com.souldev.authservice.dto.UserCreateRequest;
+import com.souldev.authservice.dto.UserRequest;
 import com.souldev.authservice.dto.UserResponse;
-import com.souldev.authservice.dto.UserUpdateRequest;
 import com.souldev.authservice.entity.User;
 import com.souldev.authservice.exception.NotFoundException;
 import com.souldev.authservice.mapper.UserMapper;
@@ -28,7 +27,7 @@ public class UserService {
     private final RepositoryUtils repositoryUtils;
 
 
-    public UserResponse createUser(UserCreateRequest request) {
+    public UserResponse createUser(UserRequest request) {
         userValidator.validateCreateUser(request);
         User entity = userMapper.toEntity(request);
         entity.setPassword(passwordEncoder.encode(entity.getPassword()));
@@ -54,8 +53,8 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public UserResponse updateUser(UserUpdateRequest request) {
-        User existingUser = userRepository.findById(request.id())
+    public UserResponse updateUser(Long id, UserRequest request) {
+        User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(Messages.USER_NOT_FOUND));
         userValidator.validateUpdateUser(request, existingUser);
         existingUser.setUsername(request.username());
