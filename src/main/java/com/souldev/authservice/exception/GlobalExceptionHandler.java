@@ -67,6 +67,7 @@ public class GlobalExceptionHandler {
         return buildError(HttpStatus.BAD_REQUEST, "VALIDATION_ERROR", message, request);
     }
 
+    //this error is made when there is a bean validation constraint violation (e.g., methods with validation that their class has @Validated or entities)
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ErrorResponse> handleConstraintViolation(
             ConstraintViolationException ex,
